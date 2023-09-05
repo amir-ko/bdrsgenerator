@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        main{
+            width: 100%;
+            height: 100vh;
+            background-color: #111927;
+            background-image: 
+            radial-gradient(at 47% 33%, hsl(162.00, 77%, 40%) 0, transparent 59%), 
+            radial-gradient(at 82% 65%, hsl(218.00, 39%, 11%) 0, transparent 55%);         
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .box{
+            width: 40%;
+            backdrop-filter: blur(16px) saturate(104%);            
+            background-color: rgba(17, 25, 40, 0.44);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.125);  
+            height: 100%;   
+            display: flex;
+            align-items: center;  
+            flex-wrap: wrap;                 
+        }
+        .circle{
+            background-color: #146B59;
+            width: 30%;
+            height: 40%;
+            display: flex;
+            flex-wrap: wrap;
+            
+            
+        }
+        span{
+            width: 20%;
+            padding-left: 20px;
+            text-transform: capitalize;
+            color: white;
+        }
+        input{
+            width: 50%;
+        }
+        p{
+            
+            display: flex;            
+            position: fixed;
+            top: 75%;
+            left: 50%;
+            text-align: center;
+            color: white;            
+        }
+        p:nth-of-type(2){
+
+            position: fixed;
+            top: 80%;
+            left:50%;
+            text-align: center;
+        }
+        #select{
+            width:70%;
+        }
+        button{
+            background-color: rgb(106, 218, 32);
+            color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 5px 5px rgb(106, 218, 32);
+            border: 1px solid rgb(47, 255, 0);
+            width: 170px;
+            height: 50px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin-top: 30px;
+            text-transform: capitalize;
+        }
+
+    </style>
+</head>
+<body>
+    <main>
+        <div class="box">
+            <span>all </span>
+            <input type="range" id="all" min="0" max="145" value="0">
+            <span>0px</span>
+            <span>top left</span>
+            <input type="range" id="tl" min="0" max="145" value="0">
+            <span>0px</span>
+            <span>top right</span>
+            <input type="range" id="tr" min="0" max="145" value="0">
+            <span>0px</span>
+            <span>bottom left</span>
+            <input type="range" id="bl" min="0" max="145" value="0">
+            <span>0px</span>
+            <span>botoom right</span>
+            <input type="range" id="br" min="0" max="145" value="0">
+            <span>0px</span>
+            <span>border width</span>
+            <input type="range" id="bw" min="0" max="199" value="0">
+            <span>0px</span>
+            <span>border color</span>
+            <input type="color" id="bc">
+            <span>#000000</span>
+            <span>border style</span>
+            <select id="select" name="border" >
+                <option value="solid">solid</option>
+                <option value="dashed">dashed</option>
+                <option value="dotted">dotted</option>
+                <option value="double">double</option>
+                <option value="groove">groove</option>
+                <option value="ridge">ridge</option>
+                <option value="inset">inset</option>
+                <option value="outset">outset</option>
+                <option value="">none</option>
+            </select>
+            <span>background color</span>
+            <input type="color" id="bg">
+            <span>#00000</span>
+            
+            
+            
+        </div>
+        <div class="circle"></div>
+        <p>border-Radius = 0px 0px 0px 0px</p>
+        <p>border = </p>
+
+        
+        <button id="copy">copy style</button>
+            
+        
+        
+    </main>
+    
+    <script>
+        let _ul = ''
+        let _ur = ''
+        let _bl = ''
+        let _br = '' 
+        let _bw = ''   
+        let _target = ''   
+        let _bc = ''
+        let _bg = ''
+        let _all = ''
+
+        document.getElementsByClassName('circle')[0].style.borderRadius = `0px 0px 0px 0px`
+        document.getElementsByClassName('circle')[0].style.border = `1px solid black`
+
+        document.getElementById('tl').addEventListener('input',(e)=>{
+            _ul = e.target.value;
+            e.target.nextElementSibling.innerHTML = _ul + 'px'
+            document.getElementsByClassName('circle')[0].style.borderRadius = `${_ul}px 0px 0px 0px ${_target}`
+            document.getElementsByTagName('p')[0].innerHTML = `border-Radius = ${_ul}px 0px 0px 0px ${_target}`
+        })
+        document.getElementById('tr').addEventListener('input',(e)=>{
+            _ur = e.target.value;
+            e.target.nextElementSibling.innerHTML = _ur + 'px'
+            document.getElementsByClassName('circle')[0].style.borderRadius = `${_ul}px ${_ur}px 0px 0px ${_target}`
+            document.getElementsByTagName('p')[0].innerHTML = `borderRadius = ${_ul}px ${_ur}px 0px 0px ${_target}`
+        })
+        document.getElementById('bl').addEventListener('input',(e)=>{
+            _bl = e.target.value;
+            e.target.nextElementSibling.innerHTML = _bl + 'px'
+            document.getElementsByClassName('circle')[0].style.borderRadius = `${_ul}px ${_ur}px 0px ${_bl}px ${_target}`
+            document.getElementsByTagName('p')[0].innerHTML = `borderRadius = ${_ul}px ${_ur}px 0px  ${_bl}px ${_target}`
+        })
+        document.getElementById('br').addEventListener('input',(e)=>{
+            _br = e.target.value;
+            e.target.nextElementSibling.innerHTML = _br + 'px'
+            document.getElementsByClassName('circle')[0].style.borderRadius = `${_ul}px ${_ur}px ${_br}px ${_bl}px ${_target}`
+            document.getElementsByTagName('p')[0].innerHTML = `borderRadius = ${_ul}px ${_ur}px ${_br}px ${_bl}px ${_target}`
+        })
+        document.getElementById('bw').addEventListener('input',(e)=>{
+            _bw = e.target.value;
+            e.target.nextElementSibling.innerHTML = _bw + 'px'
+            document.getElementsByClassName('circle')[0].style.border = `${_bw}px ${_target} ${_bc}`
+            document.getElementsByTagName('p')[1].innerHTML = `border = ${_bw}px ${_target} ${_bc}`
+        })
+        document.getElementById('select').addEventListener('change',(e)=>{
+            _target = e.target.value;            
+            document.getElementsByClassName('circle')[0].style.border = `${_bw}px ${_target} ${_bc}`
+            document.getElementsByTagName('p')[1].innerHTML = `border = ${_bw}px ${_target} ${_bc}`
+        })
+        document.getElementById('bc').addEventListener('input',(e)=>{
+            _bc = e.target.value;
+            console.log(_bc);
+            e.target.nextElementSibling.innerHTML = _bc 
+            document.getElementsByClassName('circle')[0].style.border = `${_bw}px ${_target} ${_bc}`
+            document.getElementsByTagName('p')[1].innerHTML = `border = ${_bw}px ${_target} ${_bc}`
+        })
+        document.getElementById('bg').addEventListener('input',(e)=>{
+            _bg = e.target.value;
+            e.target.nextElementSibling.innerHTML = _bg
+            document.getElementsByClassName('circle')[0].style.backgroundColor = ` ${_bg}`
+        })
+
+        document.getElementById('all').addEventListener('input',(e)=>{
+            _all = e.target.value;
+            _ul = _all
+            _ur = _all
+            _bl = _all
+            _br = _all
+            e.target.nextElementSibling.innerHTML = _all + 'px' 
+            document.getElementsByClassName('circle')[0].style.borderRadius = `${_ul}px ${_ur}px ${_br}px ${_bl}px ${_target}`
+            document.getElementsByTagName('p')[0].innerHTML = `borderRadius = ${_ul}px ${_ur}px ${_br}px ${_bl}px ${_target}`
+            document.getElementById('tl').value = _all
+            document.getElementById('tr').value = _all
+            document.getElementById('bl').value = _all
+            document.getElementById('br').value = _all
+            document.getElementsByTagName('span')[3].innerHTML = _all + 'px'
+            document.getElementsByTagName('span')[5].innerHTML = _all + 'px'
+            document.getElementsByTagName('span')[7].innerHTML = _all + 'px'
+            document.getElementsByTagName('span')[9].innerHTML = _all + 'px'
+        })
+
+        document.getElementById('copy').addEventListener('click',(e)=>{
+        let _copy = document.getElementsByTagName('p')[0].innerHTML
+        console.log(_copy);
+        navigator.clipboard.writeText(_copy);
+        })
+        
+
+
+    </script>
+</body>
+</html>
